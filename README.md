@@ -33,7 +33,7 @@ if [[ $address =~ $pattern ]]; then
   IFS=$old_ifs
   echo -e $error_message
   break
-  Validation
+  Transform_ip_address
   
  fi
  done
@@ -41,49 +41,32 @@ if [[ $address =~ $pattern ]]; then
   IFS=$old_ifs
   echo $res
  else
-  Validation
+  Transform_ip_address
  fi
 else
  IFS=$old_ifs
  echo -e $error_message
- Validation
+ Transform_ip_address
 fi
 }
 
 
-Validation
+Transform_ip_address
 ```
 
-Пример входных данных:
+Весь скрипт я решил реализовывать с помощью рекурсивной функции ```Transform_ip_address```. Сначала мы запоминаем старое значение переменной ```IFS``` и присваиваем ей новое значение, чтобы разделить введенную пользователем строку по точкам. Далее я прописал сообщение, которое будет выводится пользователю в случае, если его строка не соответсвует формату IPv-4 адреса и регулярное выражение - паттерн IPv-4 адреса. Инициализировал переменную ```res```, в которой будет храниться результат выполнения функции. После этого я предлагаю пользователю ввести IPv-4 адрес в десятичном формате. С помощью условий проверяю валидность введенного IP адреса. Внутри цикла ```for``` поочередно преобразую числа из десятичной системы исчисления в двоичную, добавляю незначащие нули и собираю переменную результата.
 
-```192.168.10.1```
+## Тесты
+1) Вводим пример из задания ```192.168.10.1```, на выходе получаем нужное значение ```11000000.10101000.00001010.00000001```.
 
-Пример выходныx данных:
+![image](https://github.com/user-attachments/assets/921c3a01-03d6-43fd-be76-44aaec6d215e)
 
-```11000000.10101000.00001010.00000001```
 
-### Как успешно сдать работу?
+2) Если мы введем совсем неподходящую по формату строку, на экран пользователя будет выведено сообщение об ошибке, и ему будет предложено ввести IPv-4 адрес еще раз.
 
-Создать свой репозиторий из шаблона этого. Как это делается - "Use this template" -> "Create a new repository" и сделайте его public. 
+![image](https://github.com/user-attachments/assets/2772e987-48d2-4b82-bff1-ff2112234f11)
 
-Находясь уже в своем репозитории - создайте новый файл формата .md и там оформляйте отчет. В отчете опишите все шаги которые вы делали, чтобы получить финальный результат работы. Необходимы только скриншоты скрипта и примера его выполнения!
 
-Что вам нужно знать, чтобы успешно защитить работу:
+3) Если мы введем подходящую по формату строку, но числа не будут входить в множество целых чисел от 0 до 255 включительно, то на экран пользователя, опять же, будет выведено сообщение об ошибке, и, опять же, ему будет предложено ввести IPv-4 адрес еще раз.
 
-Переменные; как выполнять операции; условные конструкции; функции; циклы; как работать с массивом; как посмотреть права доступа к файлам; как выдавать права доступа; что такое и зачем нужен ip адрес и маска подсети.
-
-## Дополнительные источники
-
-1. [Присваивание значений переменным.](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#VARASSIGNMENT)
-2. [Подстановка переменных.](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#VARSUBN)
-3. [Арифметические операции.](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#ARITHEXP)
-4. [Проверка условий.](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#TESTS)
-5. stackoverflow.com
-6. Хорошая ĸнига по Shell/bash в Linux - "Learn Linux Shell Scripting – Fundamentals of Bash 4.4" Sebastiaan
-Tammer
-7. [Функции.](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#FUNCTIONS)
-8. [Функции и рекурсивные функции.](https://habr.com/ru/company/ruvds/blog/327248/)
-9. [Циклы.](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#LOOPS)
-10. [Массивы](https://se.ifmo.ru/~ad/Documentation/ABS_Guide_ru.html#ARRAYS)
-11. [Про двоичную систему и IP-адрес](https://zametkinapolyah.ru/kompyuternye-seti/4-4-dvoichnye-chisla-i-dvoichnaya-sistema-schisleniya-perevod-chisla-v-dvoichnuyu-sistemu-schisleniya-iz-desyatichnoj.html)
-12.  В. Олифер, Н. Олифер "Компьютерные сети. Принципы, технологии, протоколы. Учебник" (2016)
+![image](https://github.com/user-attachments/assets/c9b32472-1c72-4683-9c43-a129bde32c40)
