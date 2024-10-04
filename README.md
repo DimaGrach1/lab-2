@@ -7,7 +7,7 @@
 ```bash
 #!/bin/bash
 
-Validation() {
+Transform_ip_address() {
 old_ifs=$IFS
 IFS="."
 error_message="\nНеверный формат ввода. IPv4-адрес имеет вид X.X.X.X, где X - целое число от 0 до 255 включительно\n"
