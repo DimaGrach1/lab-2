@@ -34,7 +34,6 @@ if [[ $address =~ $pattern ]]; then
   echo -e $error_message
   break
   Transform_ip_address
-  
  fi
  done
  if [[ ${#res} -eq 35 ]]; then
