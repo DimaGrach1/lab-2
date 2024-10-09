@@ -18,7 +18,7 @@ read address
 
 if [[ $address =~ $pattern ]]; then
  for i in $address; do
- if [[ $i -ge 0 ]] && [[ $i -le 255 ]]; then
+ if [[ $i -le 255 ]]; then
   t=$((echo "obase=2; $i" | bc))
    while [[ ${#t} -lt 8 ]]
    do
@@ -33,7 +33,6 @@ if [[ $address =~ $pattern ]]; then
   IFS=$old_ifs
   echo -e $error_message
   break
-  Transform_ip_address
  fi
  done
  if [[ ${#res} -eq 35 ]]; then
